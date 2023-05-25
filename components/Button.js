@@ -5,9 +5,8 @@ export default function Button({ text, onClick }) {
 }
 
 const StyledButton = styled.button`
-  all: unset;
   cursor: pointer;
-  padding: 1rem;
+
   color: black;
   background-color: orange;
 `;
