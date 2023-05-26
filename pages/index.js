@@ -23,8 +23,8 @@ export default function HomePage() {
     setSelectedOption("");
     setSelectedDate("");
   };
-  // Funktion um zur Mainpage zurückzukehren mit Klicken des "Home" Buttons
-  const handleHomeClick = () => {
+  // Funktion um zur Mainpage zurückzukehren mit Klicken des "Back" Buttons
+  const handleBackClick = () => {
     setShowInput(false);
     setSelectedOption("");
     setSelectedDate("");
@@ -74,9 +74,10 @@ export default function HomePage() {
             ))}
           </div>
         )}
+        {showInput && <button onClick={handleBackClick}>Back</button>}
 
         <footer>
-          <button onClick={handleHomeClick}>Home</button>
+          <a href="/">Home</a>
         </footer>
       </div>
     </>
