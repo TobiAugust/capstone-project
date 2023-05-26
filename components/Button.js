@@ -6,7 +6,6 @@ export default function Button({ text, onClick }) {
 
 const StyledButton = styled.button`
   cursor: pointer;
-
   color: black;
   background-color: orange;
 `;
