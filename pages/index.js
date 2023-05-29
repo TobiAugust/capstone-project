@@ -42,7 +42,7 @@ export default function HomePage() {
         ) : (
           <div className="input-box">
             <div>
-              <label htmlFor="option">Option:</label>
+              <label htmlFor="option">Task:</label>
               <input
                 type="text"
                 id="option"
@@ -63,9 +63,9 @@ export default function HomePage() {
           </div>
         )}
 
+        <h2>Anstehende Aufgaben:</h2>
         {submittedData.length > 0 && (
           <div className="submitted-data">
-            <h2>Anstehende Aufgaben:</h2>
             {submittedData.map((data, index) => (
               <p key={index}>
                 Was ist zu tun: {data.option} <br />
@@ -75,7 +75,6 @@ export default function HomePage() {
           </div>
         )}
         {showInput && <button onClick={handleBackClick}>Back</button>}
-
         <footer>
           <a href="/">Home</a>
         </footer>
