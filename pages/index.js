@@ -76,7 +76,7 @@ export default function HomePage() {
         )}
         {showInput && <button onClick={handleBackClick}>Back</button>}
         <footer>
-          <a href="/">Home</a>
+          <link to="/">Home</link>
         </footer>
       </div>
     </>
