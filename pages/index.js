@@ -1,5 +1,6 @@
 import Button from "../components/Button";
 import React, { useState } from "react";
+import Link from "next/link";
 
 export default function HomePage() {
   const [submittedData, setSubmittedData] = useState([]);
@@ -64,7 +65,7 @@ export default function HomePage() {
         )}
         {showInput && <button onClick={handleCancel}>Back</button>}
         <footer>
-          <a href="/">Home</a>
+          <Link href="/">Home</Link>
         </footer>
       </div>
     </>
