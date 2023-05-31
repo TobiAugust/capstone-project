@@ -1,33 +1,29 @@
 import Button from "../components/Button";
 import React, { useState } from "react";
 
-// Zustände für ausgewählte Option, ausgewähltes Datum, eingereichte Daten und Anzeige der Eingabemöglichkeiten
 export default function HomePage() {
-  const [selectedOption, setSelectedOption] = useState("");
-  const [selectedDate, setSelectedDate] = useState("");
   const [submittedData, setSubmittedData] = useState([]);
   const [showInput, setShowInput] = useState(false);
 
-  // Funktion zum Verarbeiten der eingegebenen Daten
-  const handleSubmit = () => {
+  function handleSubmit(event) {
+    event.preventDefault();
+    const formElements = event.target.elements;
+    const selectedOption = formElements.option.value;
+    const selectedDate = formElements.date.value;
     if (selectedOption && selectedDate) {
       const newData = { option: selectedOption, date: selectedDate };
       setSubmittedData([...submittedData, newData]);
-      setSelectedOption("");
-      setSelectedDate("");
+      formElements.option.value = "";
+      formElements.date.value = "";
     }
-  };
-  // Funktion, die mit "Create Task" Button erfolgt
-  const handleClick = () => {
+  }
+
+  const toggleTaskForm = () => {
     setShowInput(true);
-    setSelectedOption("");
-    setSelectedDate("");
   };
-  // Funktion um zur Mainpage zurückzukehren mit Klicken des "Back" Buttons
-  const handleBackClick = () => {
+
+  const handleCancel = () => {
     setShowInput(false);
-    setSelectedOption("");
-    setSelectedDate("");
   };
 
   return (
@@ -38,28 +34,20 @@ export default function HomePage() {
         </header>
 
         {!showInput ? (
-          <Button text="Create Task" onClick={handleClick} />
+          <Button text="Create Task" onClick={toggleTaskForm} />
         ) : (
           <div className="input-box">
-            <div>
-              <label htmlFor="option">Task:</label>
-              <input
-                type="text"
-                id="option"
-                value={selectedOption}
-                onChange={(e) => setSelectedOption(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="date">Date:</label>
-              <input
-                type="date"
-                id="date"
-                value={selectedDate}
-                onChange={(e) => setSelectedDate(e.target.value)}
-              />
-            </div>
-            <button onClick={handleSubmit}>Submit</button>
+            <form onSubmit={handleSubmit}>
+              <div>
+                <label htmlFor="option">Task:</label>
+                <input type="text" id="option" name="option" required />
+              </div>
+              <div>
+                <label htmlFor="date">Date:</label>
+                <input type="date" id="date" name="date" required />
+              </div>
+              <button type="submit">Submit</button>
+            </form>
           </div>
         )}
 
@@ -74,7 +62,7 @@ export default function HomePage() {
             ))}
           </div>
         )}
-        {showInput && <button onClick={handleBackClick}>Back</button>}
+        {showInput && <button onClick={handleCancel}>Back</button>}
         <footer>
           <a href="/">Home</a>
         </footer>
