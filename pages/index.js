@@ -1,5 +1,6 @@
 import Button from "../components/Button";
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import Link from "next/link";
 
 export default function HomePage() {
@@ -12,7 +13,11 @@ export default function HomePage() {
     const selectedOption = formElements.option.value;
     const selectedDate = formElements.date.value;
     if (selectedOption && selectedDate) {
-      const newData = { option: selectedOption, date: selectedDate };
+      const newData = {
+        id: uuidv4(), // Eindeutige ID für jeden generierten Task als Lösung
+        option: selectedOption,
+        date: selectedDate,
+      };
       setSubmittedData([...submittedData, newData]);
       formElements.option.value = "";
       formElements.date.value = "";
@@ -60,8 +65,8 @@ export default function HomePage() {
         <h2>Anstehende Aufgaben:</h2>
         {submittedData.length > 0 && (
           <div className="submitted-data">
-            {submittedData.map((data, index) => (
-              <div key={index} className="task-item">
+            {submittedData.map((data) => (
+              <div key={data.id} className="task-item">
                 <p>
                   Was ist zu tun: {data.option} <br />
                   Bis wann erledigt: {data.date}
