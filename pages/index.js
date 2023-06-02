@@ -27,8 +27,8 @@ export default function HomePage() {
     setShowInput(false);
   };
 
-  const handleDelete = (index) => {
-    const updatedData = submittedData.filter((_, i) => i !== index);
+  const handleDelete = (id) => {
+    const updatedData = submittedData.filter((data) => data.id !== id);
     setSubmittedData(updatedData);
   };
 
@@ -66,7 +66,7 @@ export default function HomePage() {
                   Was ist zu tun: {data.option} <br />
                   Bis wann erledigt: {data.date}
                 </p>
-                <button onClick={() => handleDelete(index)}>Delete</button>
+                <button onClick={() => handleDelete(data.id)}>Delete</button>
               </div>
             ))}
           </div>
