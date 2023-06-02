@@ -10,7 +10,7 @@ export default function HomePage() {
   function handleSubmit(event) {
     event.preventDefault();
     const formElements = event.target.elements;
-    const selectedOption = formElements.option.value;
+    const selectedOption = formElements.option.value.trim().replace(/\s+/g, "");
     const selectedDate = formElements.date.value;
     if (selectedOption && selectedDate) {
       const newData = {
