@@ -27,6 +27,11 @@ export default function HomePage() {
     setShowInput(false);
   };
 
+  const handleDelete = (index) => {
+    const updatedData = submittedData.filter((_, i) => i !== index);
+    setSubmittedData(updatedData);
+  };
+
   return (
     <>
       <div className="container">
@@ -56,13 +61,17 @@ export default function HomePage() {
         {submittedData.length > 0 && (
           <div className="submitted-data">
             {submittedData.map((data, index) => (
-              <p key={index}>
-                Was ist zu tun: {data.option} <br />
-                Bis wann erledigt: {data.date}
-              </p>
+              <div key={index} className="task-item">
+                <p>
+                  Was ist zu tun: {data.option} <br />
+                  Bis wann erledigt: {data.date}
+                </p>
+                <button onClick={() => handleDelete(index)}>Delete</button>
+              </div>
             ))}
           </div>
         )}
+
         {showInput && <button onClick={handleCancel}>Back</button>}
         <footer>
           <Link href="/">Home</Link>
