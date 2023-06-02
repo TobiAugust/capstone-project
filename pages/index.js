@@ -14,7 +14,7 @@ export default function HomePage() {
     const selectedDate = formElements.date.value;
     if (selectedOption && selectedDate) {
       const newData = {
-        id: uuidv4(), // Eindeutige ID für jeden generierten Task als Lösung
+        id: uuidv4(),
         option: selectedOption,
         date: selectedDate,
       };
@@ -58,6 +58,7 @@ export default function HomePage() {
                 <input type="date" id="date" name="date" required />
               </div>
               <button type="submit">Submit</button>
+              {showInput && <button onClick={handleCancel}>Back</button>}
             </form>
           </div>
         )}
@@ -71,13 +72,14 @@ export default function HomePage() {
                   Was ist zu tun: {data.option} <br />
                   Bis wann erledigt: {data.date}
                 </p>
-                <button onClick={() => handleDelete(data.id)}>Delete</button>
+                <button type="button" onClick={() => handleDelete(data.id)}>
+                  Delete
+                </button>
               </div>
             ))}
           </div>
         )}
 
-        {showInput && <button onClick={handleCancel}>Back</button>}
         <footer>
           <Link href="/">Home</Link>
         </footer>
