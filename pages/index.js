@@ -7,11 +7,13 @@ export default function HomePage() {
   const [submittedData, setSubmittedData] = useState([]);
   const [showInput, setShowInput] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
+  const [taskInput, setTaskInput] = useState("");
+  const [dateInput, setDateInput] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
     const formElements = event.target.elements;
-    const selectedOption = formElements.option.value.trim().replace(/\s+/g, "");
+    const selectedOption = formElements.option.value.trimStart();
     const selectedDate = formElements.date.value;
     if (selectedOption && selectedDate) {
       if (selectedTask) {
@@ -23,6 +25,8 @@ export default function HomePage() {
         });
         setSubmittedData(updatedData);
         setSelectedTask(null);
+        setTaskInput("");
+        setDateInput("");
       } else {
         const newData = {
           id: uuidv4(),
@@ -30,6 +34,8 @@ export default function HomePage() {
           date: selectedDate,
         };
         setSubmittedData([...submittedData, newData]);
+        setTaskInput("");
+        setDateInput("");
       }
       formElements.option.value = "";
       formElements.date.value = "";
@@ -39,11 +45,15 @@ export default function HomePage() {
   const toggleTaskForm = (task) => {
     setShowInput(true);
     setSelectedTask(task);
+    setTaskInput(task ? task.option : "");
+    setDateInput(task ? task.date : "");
   };
 
   const handleCancel = () => {
     setShowInput(false);
     setSelectedTask(null);
+    setTaskInput("");
+    setDateInput("");
   };
 
   const handleDelete = (id) => {
@@ -70,7 +80,8 @@ export default function HomePage() {
                   id="option"
                   name="option"
                   required
-                  defaultValue={selectedTask ? selectedTask.option : ""}
+                  value={taskInput}
+                  onChange={(e) => setTaskInput(e.target.value)}
                 />
               </div>
               <div>
@@ -80,7 +91,8 @@ export default function HomePage() {
                   id="date"
                   name="date"
                   required
-                  defaultValue={selectedTask ? selectedTask.date : ""}
+                  value={dateInput}
+                  onChange={(e) => setDateInput(e.target.value)}
                 />
               </div>
               <button type="submit">
