@@ -81,7 +81,7 @@ export default function HomePage() {
                   name="option"
                   required
                   value={taskInput}
-                  onChange={(e) => setTaskInput(e.target.value)}
+                  onChange={(event) => setTaskInput(event.target.value)}
                 />
               </div>
               <div>
@@ -92,7 +92,7 @@ export default function HomePage() {
                   name="date"
                   required
                   value={dateInput}
-                  onChange={(e) => setDateInput(e.target.value)}
+                  onChange={(event) => setDateInput(event.target.value)}
                 />
               </div>
               <button type="submit">
