@@ -9,7 +9,6 @@ export default function HomePage() {
   const [selectedTask, setSelectedTask] = useState(null);
   const [taskInput, setTaskInput] = useState("");
   const [dateInput, setDateInput] = useState("");
-
   function handleSubmit(event) {
     event.preventDefault();
     const formElements = event.target.elements;
@@ -41,33 +40,28 @@ export default function HomePage() {
       formElements.date.value = "";
     }
   }
-
   const toggleTaskForm = (task) => {
     setShowInput(true);
     setSelectedTask(task);
     setTaskInput(task ? task.option : "");
     setDateInput(task ? task.date : "");
   };
-
   const handleCancel = () => {
     setShowInput(false);
     setSelectedTask(null);
     setTaskInput("");
     setDateInput("");
   };
-
   const handleDelete = (id) => {
     const updatedData = submittedData.filter((data) => data.id !== id);
     setSubmittedData(updatedData);
   };
-
   return (
     <>
       <div className="container">
         <header>
           <h1>Haushalts-Retter</h1>
         </header>
-
         {!showInput ? (
           <Button text="Create Task" onClick={() => toggleTaskForm(null)} />
         ) : (
@@ -102,7 +96,6 @@ export default function HomePage() {
             </form>
           </div>
         )}
-
         <h2>Anstehende Aufgaben:</h2>
         {submittedData.length > 0 && (
           <div className="submitted-data">
@@ -122,7 +115,6 @@ export default function HomePage() {
             ))}
           </div>
         )}
-
         <footer>
           <Link href="/">Home</Link>
         </footer>
