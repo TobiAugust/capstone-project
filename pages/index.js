@@ -55,6 +55,14 @@ export default function HomePage() {
   const handleDelete = (id) => {
     const updatedData = submittedData.filter((data) => data.id !== id);
     setSubmittedData(updatedData);
+
+    // Leere die Eingabefelder, wenn der ausgewählte Task gelöscht wird
+    if (selectedTask && selectedTask.id === id) {
+      setTaskInput("");
+      setDateInput("");
+      setSelectedTask(null);
+      setShowInput(false);
+    }
   };
   return (
     <>
@@ -96,25 +104,32 @@ export default function HomePage() {
             </form>
           </div>
         )}
-        <h2>Anstehende Aufgaben:</h2>
-        {submittedData.length > 0 && (
-          <div className="submitted-data">
-            {submittedData.map((data) => (
-              <div key={data.id} className="task-item">
-                <p>
-                  Was ist zu tun: {data.option} <br />
-                  Bis wann erledigt: {data.date}
-                </p>
-                <button type="button" onClick={() => handleDelete(data.id)}>
-                  Delete
-                </button>
-                <button type="button" onClick={() => toggleTaskForm(data)}>
-                  Edit
-                </button>
-              </div>
-            ))}
+        <section>
+          <h2>Anstehende Aufgaben:</h2>
+          {submittedData.length > 0 && (
+            <div className="submitted-data">
+              {submittedData.map((data) => (
+                <div key={data.id} className="task-item">
+                  <p>
+                    Was ist zu tun: {data.option} <br />
+                    Bis wann erledigt: {data.date}
+                  </p>
+                  <button type="button" onClick={() => handleDelete(data.id)}>
+                    Delete
+                  </button>
+                  <button type="button" onClick={() => toggleTaskForm(data)}>
+                    Edit
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
+        <section>
+          <div>
+            <h2>Anstehende Wochenpläne:</h2>
           </div>
-        )}
+        </section>
         <footer>
           <Link href="/">Home</Link>
         </footer>
