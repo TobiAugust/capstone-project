@@ -1,5 +1,3 @@
-index.js;
-
 import Button from "../components/Button";
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
@@ -66,17 +64,21 @@ export default function HomePage() {
 
   return (
     <>
-      <div className="container">
+      <div>
         <header>
-          <h1>Haushalts-Retter</h1>
+          <h1>Haushalts Retter</h1>
         </header>
+      </div>
+      <div className="container">
         {!showInput ? (
           <Button text="Create Task" onClick={() => toggleTaskForm(null)} />
         ) : (
           <div className="input-box">
             <form onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="option">Task:</label>
+                <label htmlFor="option">
+                  <strong>Task:</strong>
+                </label>
                 <input
                   type="text"
                   id="option"
@@ -87,7 +89,9 @@ export default function HomePage() {
                 />
               </div>
               <div>
-                <label htmlFor="date">Date:</label>
+                <label htmlFor="date">
+                  <strong>Date:</strong>
+                </label>
                 <input
                   type="date"
                   id="date"
@@ -111,13 +115,23 @@ export default function HomePage() {
               {submittedData.map((data) => (
                 <div key={data.id} className="task-item">
                   <p>
-                    Was ist zu tun: {data.option} <br />
-                    Bis wann erledigt: {data.date}
+                    <strong>Was ist zu tun: </strong>
+                    {data.option} <br />
+                    <strong>Bis wann erledigt: </strong>
+                    {data.date}
                   </p>
-                  <button type="button" onClick={() => handleDelete(data.id)}>
+                  <button
+                    type="button"
+                    onClick={() => handleDelete(data.id)}
+                    data-action="delete"
+                  >
                     Delete
                   </button>
-                  <button type="button" onClick={() => toggleTaskForm(data)}>
+                  <button
+                    type="button"
+                    onClick={() => toggleTaskForm(data)}
+                    data-action="edit"
+                  >
                     Edit
                   </button>
                 </div>
@@ -125,14 +139,14 @@ export default function HomePage() {
             </div>
           )}
         </section>
-        <footer>
-          <Link href="/">Home</Link>
-          <p>
-            Entwickelt von{" "}
-            <a href="https://github.com/TobiAugust">Tobias Augustyniak</a>
-          </p>
-        </footer>
       </div>
+      <footer>
+        <Link href="/">Home</Link>
+        <p>
+          Entwickelt von{" "}
+          <a href="https://github.com/TobiAugust">Tobias Augustyniak</a>
+        </p>
+      </footer>
     </>
   );
 }

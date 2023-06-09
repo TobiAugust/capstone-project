@@ -7,6 +7,6 @@ export default function Button({ text, onClick }) {
 const StyledButton = styled.button`
   cursor: pointer;
   color: black;
-  background-color: lightblue;
+  background-color: lightgreen;
   border-radius: 20px;
 `;
