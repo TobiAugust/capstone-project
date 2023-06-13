@@ -2,6 +2,8 @@ import Button from "../components/Button";
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Link from "next/link";
+import Header from "../components/Header";
+import TaskItem from "../components/TaskItem.js";
 
 export default function HomePage() {
   const [submittedData, setSubmittedData] = useState([]);
@@ -65,9 +67,7 @@ export default function HomePage() {
   return (
     <>
       <div>
-        <header>
-          <h1>Haushalts Retter</h1>
-        </header>
+        <Header />
       </div>
       <div className="container">
         {!showInput ? (
@@ -113,28 +113,12 @@ export default function HomePage() {
           {submittedData.length > 0 && (
             <div className="submitted-data">
               {submittedData.map((data) => (
-                <div key={data.id} className="task-item">
-                  <p>
-                    <strong>Was ist zu tun: </strong>
-                    {data.option} <br />
-                    <strong>Bis wann erledigt: </strong>
-                    {data.date}
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => handleDelete(data.id)}
-                    data-action="delete"
-                  >
-                    Delete
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => toggleTaskForm(data)}
-                    data-action="edit"
-                  >
-                    Edit
-                  </button>
-                </div>
+                <TaskItem
+                  key={data.id}
+                  data={data}
+                  onDelete={() => handleDelete(data.id)}
+                  onEdit={() => toggleTaskForm(data)}
+                />
               ))}
             </div>
           )}
