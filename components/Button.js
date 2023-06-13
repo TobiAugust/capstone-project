@@ -9,10 +9,12 @@ const StyledButton = styled.button`
   color: black;
   background-color: lightgreen;
   border-radius: 20px;
-  padding: 10px 20px;
-  margin-right: 10px;
-  font-size: 16px;
-}
 
+  &.button[type="button"][data-action="delete"] {
+    background-color: red;
+  }
 
+  &.button[type="button"][data-action="edit"] {
+    background-color: lightblue;
+  }
 `;

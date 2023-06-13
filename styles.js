@@ -20,11 +20,7 @@ export default createGlobalStyle`
       text-align: center;
     }
 
-
-    
-    
-
-  .input-box {
+ .input-box {
     text-align: left;
     margin-bottom: 20px;
   }
@@ -48,7 +44,12 @@ export default createGlobalStyle`
     background-color: lightgrey;
   }
 
- 
+  button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    font-size: 16px;
+    border-radius: 20px;
+  }
 
   .submitted-data {
     display: grid;
@@ -57,15 +58,16 @@ export default createGlobalStyle`
     margin-top: 20px;
   }
 
-
-  
-
   footer {
     margin-top: 40px;
     position: sticky;
     bottom: 0;
     background-color: lightgreen;
     width: 100%;
+    flex-shrink: 0;
+    background-color: lightgreen;
+    padding: 10px;
+    text-align: center;
   }
 
   footer p {
@@ -86,16 +88,7 @@ export default createGlobalStyle`
   }
   
   footer {
-    flex-shrink: 0;
-    background-color: lightgreen;
-    padding: 10px;
-    text-align: center;
+   
   }
-  button[type="button"][data-action="delete"] {
-    background-color: red;
-  }
-
-  button[type="button"][data-action="edit"] {
-    background-color: lightblue; 
-  }
+ 
 `;
