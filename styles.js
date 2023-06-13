@@ -13,28 +13,9 @@ export default createGlobalStyle`
     background-color: lightcoral;
   }
 
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 40px;
-      text-align: center;
-    }
+  
 
- .input-box {
-    text-align: left;
-    margin-bottom: 20px;
-  }
-
-  form div {
-    margin-bottom: 10px;
-  }
-
-  label {
-    display: block;
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
+ 
 
   input {
     width: 100%;
@@ -86,9 +67,4 @@ export default createGlobalStyle`
   section {
     flex: 1;
   }
-  
-  footer {
-   
-  }
- 
 `;

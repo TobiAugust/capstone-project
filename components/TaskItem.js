@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Button from "./Button";
 
 const TaskItemContainer = styled.div`
   border: 1px solid #ccc;
@@ -21,12 +22,14 @@ const TaskItem = ({ data, onDelete, onEdit }) => {
       <p>
         <strong>Bis wann erledigt:</strong> {data.date}
       </p>
-      <button type="button" onClick={onDelete} data-action="delete">
-        Delete
-      </button>
-      <button type="button" onClick={onEdit} data-action="edit">
-        Edit
-      </button>
+      <Button
+        type="button"
+        onClick={onDelete}
+        data-action="delete"
+        text="Delete"
+      />
+
+      <Button type="button" onClick={onEdit} data-action="edit" text="Edit" />
     </TaskItemContainer>
   );
 };

@@ -4,6 +4,11 @@ import { v4 as uuidv4 } from "uuid";
 import Link from "next/link";
 import Header from "../components/Header";
 import TaskItem from "../components/TaskItem.js";
+import Container from "../components/Container";
+import InputBox from "../components/InputBox";
+import Form from "../components/Form";
+import Label from "../components/Label";
+import StyledInput from "../components/StyledInput";
 
 export default function HomePage() {
   const [submittedData, setSubmittedData] = useState([]);
@@ -69,17 +74,17 @@ export default function HomePage() {
       <div>
         <Header />
       </div>
-      <div className="container">
+      <Container>
         {!showInput ? (
           <Button text="Create Task" onClick={() => toggleTaskForm(null)} />
         ) : (
-          <div className="input-box">
-            <form onSubmit={handleSubmit}>
+          <InputBox>
+            <Form onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="option">
+                <Label htmlFor="option">
                   <strong>Task:</strong>
-                </label>
-                <input
+                </Label>
+                <StyledInput
                   type="text"
                   id="option"
                   name="option"
@@ -89,9 +94,9 @@ export default function HomePage() {
                 />
               </div>
               <div>
-                <label htmlFor="date">
+                <Label htmlFor="date">
                   <strong>Date:</strong>
-                </label>
+                </Label>
                 <input
                   type="date"
                   id="date"
@@ -101,12 +106,10 @@ export default function HomePage() {
                   onChange={(event) => setDateInput(event.target.value)}
                 />
               </div>
-              <button type="submit">
-                {selectedTask ? "Update" : "Submit"}
-              </button>
-              {showInput && <button onClick={handleCancel}>Back</button>}
-            </form>
-          </div>
+              <Button type="submit" text={selectedTask ? "Update" : "Submit"} />
+              {showInput && <Button text="Back" onClick={handleCancel} />}
+            </Form>
+          </InputBox>
         )}
         <section>
           <h2>Anstehende Aufgaben:</h2>
@@ -123,7 +126,7 @@ export default function HomePage() {
             </div>
           )}
         </section>
-      </div>
+      </Container>
       <footer>
         <Link href="/">Home</Link>
         <p>
