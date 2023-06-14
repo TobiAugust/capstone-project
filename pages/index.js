@@ -9,6 +9,12 @@ import InputBox from "../components/InputBox";
 import Form from "../components/Form";
 import Label from "../components/Label";
 import StyledInput from "../components/StyledInput";
+import SubmittedData from "../components/SubmittedData";
+import Footer from "../components/Footer";
+import FooterText from "../components/FooterText";
+import FooterLink from "../components/FooterLink";
+import MainContainer from "../components/MainContainer";
+import Section from "../components/Section";
 
 export default function HomePage() {
   const [submittedData, setSubmittedData] = useState([]);
@@ -16,35 +22,47 @@ export default function HomePage() {
   const [selectedTask, setSelectedTask] = useState(null);
   const [taskInput, setTaskInput] = useState("");
   const [dateInput, setDateInput] = useState("");
+  const [selectedPerson, setSelectedPerson] = useState(null);
+  const [personInput, setPersonInput] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
     const formElements = event.target.elements;
     const selectedOption = formElements.option.value.trimStart();
     const selectedDate = formElements.date.value;
+    const selectedPerson = formElements.person.value;
 
-    if (selectedOption && selectedDate) {
+    if (selectedOption && selectedDate && selectedPerson) {
       if (selectedTask) {
         const updatedData = submittedData.map((data) => {
           if (data.id === selectedTask.id) {
-            return { ...data, option: selectedOption, date: selectedDate };
+            return {
+              ...data,
+              person: selectedPerson,
+              option: selectedOption,
+              date: selectedDate,
+            };
           }
           return data;
         });
+        setSelectedPerson(null);
         setSubmittedData(updatedData);
         setSelectedTask(null);
       } else {
         const newData = {
           id: uuidv4(),
+          person: selectedPerson,
           option: selectedOption,
           date: selectedDate,
         };
         setSubmittedData([...submittedData, newData]);
       }
+      setPersonInput("");
       setTaskInput("");
       setDateInput("");
       formElements.option.value = "";
       formElements.date.value = "";
+      formElements.person.value = "";
     }
   }
 
@@ -52,6 +70,8 @@ export default function HomePage() {
     setShowInput(true);
     setSelectedTask(task);
     setTaskInput(task ? task.option : "");
+    setSelectedPerson(task ? task.person : null);
+    setPersonInput(task ? task.person : "");
     setDateInput(task ? task.date : "");
   };
 
@@ -59,12 +79,15 @@ export default function HomePage() {
     setShowInput(false);
     setSelectedTask(null);
     setTaskInput("");
+    setSelectedPerson(null);
+    setPersonInput("");
     setDateInput("");
   };
 
   const handleDelete = (id) => {
     const updatedData = submittedData.filter((data) => data.id !== id);
     setSubmittedData(updatedData);
+    setPersonInput("");
     setTaskInput("");
     setDateInput("");
   };
@@ -74,66 +97,88 @@ export default function HomePage() {
       <div>
         <Header />
       </div>
-      <Container>
-        {!showInput ? (
-          <Button text="Create Task" onClick={() => toggleTaskForm(null)} />
-        ) : (
-          <InputBox>
-            <Form onSubmit={handleSubmit}>
-              <div>
-                <Label htmlFor="option">
-                  <strong>Task:</strong>
-                </Label>
-                <StyledInput
-                  type="text"
-                  id="option"
-                  name="option"
-                  required
-                  value={taskInput}
-                  onChange={(event) => setTaskInput(event.target.value)}
+      <MainContainer>
+        <Container>
+          {!showInput ? (
+            <Button text="Create Task" onClick={() => toggleTaskForm(null)} />
+          ) : (
+            <InputBox>
+              <Form onSubmit={handleSubmit}>
+                <div>
+                  <Label htmlFor="date">
+                    <strong>Person:</strong>
+                  </Label>
+                  <StyledInput
+                    type="text"
+                    id="person"
+                    name="person"
+                    required
+                    value={personInput}
+                    onChange={(event) => setPersonInput(event.target.value)}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="option">
+                    <strong>Task:</strong>
+                  </Label>
+                  <StyledInput
+                    type="text"
+                    id="option"
+                    name="option"
+                    required
+                    value={taskInput}
+                    onChange={(event) => setTaskInput(event.target.value)}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="date">
+                    <strong>Date:</strong>
+                  </Label>
+                  <StyledInput
+                    type="date"
+                    id="date"
+                    name="date"
+                    required
+                    value={dateInput}
+                    onChange={(event) => setDateInput(event.target.value)}
+                  />
+                </div>
+                <Button
+                  type="submit"
+                  text={selectedTask ? "Update" : "Submit"}
                 />
-              </div>
-              <div>
-                <Label htmlFor="date">
-                  <strong>Date:</strong>
-                </Label>
-                <input
-                  type="date"
-                  id="date"
-                  name="date"
-                  required
-                  value={dateInput}
-                  onChange={(event) => setDateInput(event.target.value)}
-                />
-              </div>
-              <Button type="submit" text={selectedTask ? "Update" : "Submit"} />
-              {showInput && <Button text="Back" onClick={handleCancel} />}
-            </Form>
-          </InputBox>
-        )}
-        <section>
-          <h2>Anstehende Aufgaben:</h2>
-          {submittedData.length > 0 && (
-            <div className="submitted-data">
-              {submittedData.map((data) => (
-                <TaskItem
-                  key={data.id}
-                  data={data}
-                  onDelete={() => handleDelete(data.id)}
-                  onEdit={() => toggleTaskForm(data)}
-                />
-              ))}
-            </div>
+                {showInput && <Button text="Back" onClick={handleCancel} />}
+              </Form>
+            </InputBox>
           )}
-        </section>
-      </Container>
-      <footer>
-        <Link href="/">Home</Link>
-        <p>
-          Entwickelt von{" "}
-          <a href="https://github.com/TobiAugust">Tobias Augustyniak</a>
-        </p>
-      </footer>
+          <Section>
+            <h2>Anstehende Aufgaben:</h2>
+            {submittedData.length > 0 && (
+              <SubmittedData>
+                {submittedData.map((data) => (
+                  <TaskItem
+                    key={data.id}
+                    data={data}
+                    onDelete={() => handleDelete(data.id)}
+                    onEdit={() => toggleTaskForm(data)}
+                  />
+                ))}
+              </SubmittedData>
+            )}
+          </Section>
+        </Container>
+      </MainContainer>
+      <Footer>
+        <FooterText>
+          <Link href="/">Home</Link>
+          <p>
+            Entwickelt von{" "}
+            <FooterLink>
+              <a href="https://github.com/TobiAugust">Tobias Augustyniak</a>
+            </FooterLink>
+          </p>
+        </FooterText>
+      </Footer>
     </>
   );
 }
