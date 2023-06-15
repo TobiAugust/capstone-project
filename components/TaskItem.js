@@ -3,10 +3,9 @@ import styled from "styled-components";
 import Button from "../components/Button";
 
 const TaskItemContainer = styled.div`
-  border: 1px solid #ccc;
   background-color: #ddc6ec;
   padding: 10px;
-  text-align: left;
+  text-align: center;
   box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 `;
 

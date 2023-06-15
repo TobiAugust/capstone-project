@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Footer = styled.footer`
   margin-top: 40px;
-  position: fixed;
+  position: sticky;
   bottom: 0;
   background-color: #ecdff5;
   width: 100%;

@@ -169,13 +169,9 @@ export default function HomePage() {
         </Container>
       </MainContainer>
       <Footer>
-        <FooterText>
-          <a href="/">Home</a>
-          <br></br>
-          Entwickelt von{" "}
-        </FooterText>
-        <FooterLink>
-          <a href="https://github.com/TobiAugust">Tobias Augustyniak</a>
+        <FooterText>Entwickelt von</FooterText>
+        <FooterLink href="https://github.com/TobiAugust">
+          Tobias Augustyniak
         </FooterLink>
       </Footer>
     </>
