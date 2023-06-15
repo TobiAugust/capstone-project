@@ -18,8 +18,8 @@ const TaskItem = ({ data, onDelete, onEdit }) => {
     <TaskItemContainer>
       <TaskTitle>
         <p>
-          <strong>{data.person}</strong> muss <strong>{data.option}</strong> bis
-          zum <strong>{data.date}</strong>!
+          <strong>{data.person}</strong> should do{" "}
+          <strong>{data.option}</strong> up to the <strong>{data.date}</strong>!
         </p>
       </TaskTitle>
       <Button
