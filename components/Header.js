@@ -25,7 +25,7 @@ const Heading = styled.h1`
 const Header = () => {
   return (
     <HeaderContainer>
-      <Heading>Pandas CleanMachine</Heading>
+      <Heading>🐼 Pandas 🐼 CleanMachine 🧹 🪣 🧽</Heading>
     </HeaderContainer>
   );
 };
