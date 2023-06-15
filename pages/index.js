@@ -152,7 +152,7 @@ export default function HomePage() {
             </InputBox>
           )}
           <Section>
-            <h2>Anstehende Aufgaben:</h2>
+            <h2>Upcoming Tasks:</h2>
             {submittedData.length > 0 && (
               <SubmittedData>
                 {submittedData.map((data) => (
@@ -169,7 +169,7 @@ export default function HomePage() {
         </Container>
       </MainContainer>
       <Footer>
-        <FooterText>Entwickelt von</FooterText>
+        <FooterText>Developed by</FooterText>
         <FooterLink href="https://github.com/TobiAugust">
           Tobias Augustyniak
         </FooterLink>
