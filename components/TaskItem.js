@@ -7,21 +7,22 @@ const TaskItemContainer = styled.div`
   background-color: coral;
   padding: 10px;
   text-align: left;
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 `;
 
 const TaskTitle = styled.p`
-  font-weight: bold;
+  font-weight: solid;
 `;
 
 const TaskItem = ({ data, onDelete, onEdit }) => {
   return (
     <TaskItemContainer>
       <TaskTitle>
-        <strong>Was ist zu tun:</strong> {data.option}
+        <p>
+          <strong>{data.person}</strong> muss <strong>{data.option}</strong> bis
+          zum <strong>{data.date}</strong>!
+        </p>
       </TaskTitle>
-      <p>
-        <strong>Bis wann erledigt:</strong> {data.date}
-      </p>
       <Button
         type="button"
         onClick={onDelete}

@@ -161,7 +161,9 @@ export default function HomePage() {
                     data={data}
                     onDelete={() => handleDelete(data.id)}
                     onEdit={() => toggleTaskForm(data)}
-                  />
+                  >
+                    <p>{data.person}</p>
+                  </TaskItem>
                 ))}
               </SubmittedData>
             )}
@@ -170,13 +172,11 @@ export default function HomePage() {
       </MainContainer>
       <Footer>
         <FooterText>
-          <Link href="/">Home</Link>
-          <p>
-            Entwickelt von{" "}
-            <FooterLink>
-              <a href="https://github.com/TobiAugust">Tobias Augustyniak</a>
-            </FooterLink>
-          </p>
+          <a href="/">Home</a>
+          Entwickelt von{" "}
+          <FooterLink>
+            <a href="https://github.com/TobiAugust">Tobias Augustyniak</a>
+          </FooterLink>
         </FooterText>
       </Footer>
     </>
