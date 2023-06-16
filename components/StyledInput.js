@@ -7,7 +7,7 @@ const StyledInput = styled.input`
   font-size: 16px;
   border-style: none;
   border-radius: 30px;
-  background-color: #f5eef9;
+  background-color: #ecdff5;
   box-shadow: 0px 1px 7px 4px rgba(0, 0, 0, 0.25);
 `;
 

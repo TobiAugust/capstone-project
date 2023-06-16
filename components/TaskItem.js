@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import Button from "../components/Button";
 
-const TaskItemContainer = styled.div`
+const TaskItemContainer = styled.li`
   background-color: #ddc6ec;
   padding: 10px;
   text-align: center;
+  border-radius: 20px;
   box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 `;
 

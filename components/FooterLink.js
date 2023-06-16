@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const FooterLink = styled.a`
-  color: #333;
+  color: #b37dcf;
 `;
 
 export default FooterLink;
