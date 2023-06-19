@@ -13,7 +13,6 @@ import Footer from "../components/Footer";
 import FooterText from "../components/FooterText";
 import FooterLink from "../components/FooterLink";
 import MainContainer from "../components/MainContainer";
-import Section from "../components/Section";
 
 export default function HomePage() {
   const [submittedData, setSubmittedData] = useState([]);
@@ -149,21 +148,19 @@ export default function HomePage() {
               {showInput && <Button text="Back" onClick={handleCancel} />}
             </Form>
           )}
-          <Section>
-            <h2>Upcoming Tasks:</h2>
-            {submittedData.length > 0 && (
-              <SubmittedData>
-                {submittedData.map((data) => (
-                  <TaskItem
-                    key={data.id}
-                    data={data}
-                    onDelete={() => handleDelete(data.id)}
-                    onEdit={() => toggleTaskForm(data)}
-                  ></TaskItem>
-                ))}
-              </SubmittedData>
-            )}
-          </Section>
+          <h2>Upcoming Tasks:</h2>
+          {submittedData.length > 0 && (
+            <SubmittedData>
+              {submittedData.map((data) => (
+                <TaskItem
+                  key={data.id}
+                  data={data}
+                  onDelete={() => handleDelete(data.id)}
+                  onEdit={() => toggleTaskForm(data)}
+                ></TaskItem>
+              ))}
+            </SubmittedData>
+          )}
         </Container>
       </MainContainer>
       <Footer>

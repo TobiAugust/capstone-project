@@ -3,7 +3,10 @@ import styled from "styled-components";
 import Button from "../components/Button";
 
 const TaskItemContainer = styled.li`
+  list-style-type: none;
+  width: 100%;
   background-color: #ddc6ec;
+  margin: 10px 0px;
   padding: 10px;
   text-align: center;
   border-radius: 20px;
